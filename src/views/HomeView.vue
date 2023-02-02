@@ -1,5 +1,5 @@
 <script setup></script>
 
 <template>
-  <main>Home Page</main>
+  <main class="text-2xl bg-blue-500">Home Page</main>
 </template>
