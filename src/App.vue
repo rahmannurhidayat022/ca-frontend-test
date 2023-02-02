@@ -2,12 +2,13 @@
 import { RouterLink, RouterView } from "vue-router";
 import Dropdown from "./components/Dropdown.vue";
 import DropdownItem from "./components/DropdownItem.vue";
+import Sidebar from "./components/Sidebar.vue";
 </script>
 
 <template>
   <header class="relative flex justify-between py-2 bg-gradient-to-r from-pl-blue-dark to-pl-blue">
     <div class="flex gap-2">
-      <img class="bg-cover object-center mx-10" src="./assets/images/logo-helium-white2.png" width="120"
+      <img class="bg-cover object-center mx-12" src="./assets/images/logo-helium-white2.png" width="120"
         alt="brand logo" loading="lazy" />
       <div class="hidden lg:flex lg:gap-2">
         <Dropdown label="My Workspace">
@@ -39,8 +40,8 @@ import DropdownItem from "./components/DropdownItem.vue";
       </div>
     </div>
   </header>
-  <div class="">
-    <aside>Sidemenu</aside>
-    <main>content</main>
+  <div class="min-h-screen flex bg-slate-100">
+    <Sidebar />
+    <main class="flex-1">content</main>
   </div>
 </template>
