@@ -31,7 +31,9 @@
       <i class="fa-solid fa-chart-simple"></i>
       Percentage of Unique Elements
     </div>
-    <div></div>
+    <div class="w-full mt-4 h-[500px] overflow-hidden">
+      <Line :data="chart.data" :options="chart.options" />
+    </div>
   </div>
 </template>
 
@@ -40,15 +42,69 @@ import BadgeOutline from "../components/BadgeOutline.vue";
 import BadgeFill from "../components/BadgeFill.vue";
 import DataJSON from "../temp/data.json";
 
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Line } from "vue-chartjs";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
 const { data } = DataJSON;
 export default {
   components: {
     BadgeOutline,
     BadgeFill,
+    Line,
   },
   data() {
     return {
       summaryData: {},
+      chart: {
+        data: {
+          labels: [],
+          datasets: [
+            {
+              label: "Total Element",
+              backgroundColor: "#38bdf8",
+              data: [],
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          animations: {
+            tension: {
+              duration: 1000,
+              easing: "linear",
+              from: 1,
+              to: 0,
+              loop: true,
+            },
+          },
+          scales: {
+            y: {
+              min: 0,
+              max: 350,
+            },
+          },
+        },
+      },
     };
   },
   created() {
@@ -59,18 +115,12 @@ export default {
       errors: data.result.obj.status?.error || 0,
     };
     this.summaryData.correlations = data.result.obj.status.severity;
-    this.summaryData.percentages = data.result.obj.summary.map(
-      (item, index) => {
-        return {
-          id: index,
-          name: item.name,
-          totalElement: item.total_element,
-        };
-      }
-    );
-  },
-  mounted() {
-    console.log(this.summaryData);
+    this.chart.data.labels = data.result.obj.summary.map((item) => {
+      return item.name;
+    });
+    this.chart.data.datasets[0].data = data.result.obj.summary.map((item) => {
+      return item.total_element;
+    });
   },
 };
 </script>
