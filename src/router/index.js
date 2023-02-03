@@ -1,13 +1,25 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
+import BrowseSection from "../views/Browse.vue";
+import CorrelationSection from "../views/Correlation.vue";
+import SummarySection from "../views/Summary.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",
-      name: "home",
-      component: HomeView,
+      name: "browse",
+      component: BrowseSection,
+    },
+    {
+      path: "/",
+      name: "summary",
+      component: SummarySection,
+    },
+    {
+      path: "/",
+      name: "correlation",
+      component: CorrelationSection,
     },
   ],
 });
