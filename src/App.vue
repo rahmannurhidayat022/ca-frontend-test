@@ -129,7 +129,6 @@ export default {
           correlations: {},
           percentages: [],
         },
-        correlation: [],
       },
     };
   },
@@ -157,7 +156,6 @@ export default {
         };
       }
     );
-    this.data.correlation = data.result.obj.correlation;
   },
 };
 </script>
