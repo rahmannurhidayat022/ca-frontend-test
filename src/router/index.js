@@ -13,14 +13,14 @@ const router = createRouter({
       component: BrowseSection,
     },
     {
+      path: "/browse/:id",
+      name: "browse.detail",
+      component: BrowseDetail,
+    },
+    {
       path: "/",
       name: "summary",
       component: SummarySection,
-    },
-    {
-      path: "/:id",
-      name: "browse.detail",
-      component: BrowseDetail,
     },
     {
       path: "/",

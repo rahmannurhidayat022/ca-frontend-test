@@ -26,6 +26,9 @@ export default {
           title: "Type",
           data: "name",
           render: function (data, _type, row, _meta) {
+            /**
+              clickable not work
+            **/
             return `<router-link :to="{ name: "browse.detail", params: { id: ${row.id} }}" class="text-pl-blue cursor-pointer">${data}</router-link>`;
           },
         },
